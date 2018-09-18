@@ -17,13 +17,27 @@
 import HelloWorld from '@/components/HelloWorld.vue'
 
 export default {
-  name: 'home',
-  components: {
-    HelloWorld
-  }
+    name: 'home',
+    components: {
+      HelloWorld
+    },
+    data() {
+      return {
+
+      }
+    },
+    methods: {
+
+    },
+    created() {
+
+    },
+    mounted() {
+
+    }
 }
 </script>
-<style>
+<style scoped>
   .el-row {
     margin-bottom: 20px;
   &:last-child {
