@@ -31,7 +31,7 @@
     }
 </script>
 <style lang="scss" scoped>
-    @import "../styles/theme.sass";
+    @import "../styles/theme";
     .header{
         background-color: #fff;
         display: flex;
@@ -50,7 +50,7 @@
         }
     }
     .right-btns{
-        color: #54BEFF;
+        color: $theme-color;
         font-size: 14px;
         height: 60px;
         display: flex;
