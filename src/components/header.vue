@@ -31,7 +31,7 @@
     }
 </script>
 <style lang="scss" scoped>
-    @import "../styles/theme";
+    @import "~@/styles/themes";
     .header{
         background-color: #fff;
         display: flex;

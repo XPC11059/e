@@ -41,8 +41,15 @@ body, html{
   margin: 0;
   height: 100%;
 }
+input{
+    border: 0;
+    padding: 0 10px;
+    outline: none;
+    box-sizing: border-box;
+}
 .el-header{
   padding: 0 !important;
+    min-width: 820px;
 }
 .el-container{
   height: 100%;
@@ -66,6 +73,7 @@ body, html{
   height: 100%;
   padding: 0 !important;
   /*line-height: 160px;*/
+    min-width: 820px;
 }
 
 .el-submenu__title{
