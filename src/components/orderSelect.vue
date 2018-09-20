@@ -174,6 +174,7 @@
 <style lang="scss" scoped>
     @import "~@/styles/themes.scss";
     .content{
+        background-color: rgba(249, 249, 249, 0.59);
         padding: 10px 10px 0 10px;
         display: flex;
         flex-wrap: wrap;
@@ -203,11 +204,12 @@
         }
     }
     .footer{
+        background-color: rgba(249, 249, 249, 0.59);
         display: flex;
         align-items: center;
         justify-content: space-between;
         height: 30px;
-        padding: 0 10px;
+        padding: 0 10px 10px 0;
         .condition{
             display: flex;
             align-items: center;
