@@ -16,12 +16,11 @@
             <!--</div>-->
         <!--</div>-->
         <el-table
-                ref="multipleTable"
                 :data="tableData"
                 tooltip-effect="dark"
-                style="width: 100%"
                 :cell-style="cellFn"
                 :header-cell-style="headerFn"
+                height="310"
                 border>
             <el-table-column v-if="true"
                              type="selection"
@@ -33,7 +32,9 @@
                 <el-table-column
                         :prop="column.prop"
                         :label="column.label"
-                        v-if="column.operation">
+                        :width="column.width"
+                        v-if="column.operation"
+                        :key="column.label">
                     <template slot-scope="scope">
                         <input type="text" ref="inputRef" @change="column.operation.func(scope)" :value="scope.row[column.prop]">
                     </template>
@@ -46,10 +47,37 @@
                         :filters="column.filters"
                         :filter-method="column.func"
                         filter-placement="bottom-end"
+                        :key="column.label"
                         v-else>
                 </el-table-column>
             </template>
         </el-table>
+
+        <footer>
+            <div class="title">
+                <div class="order-detail" :class="{ 'act'  : state === 0}" @click="detailFn(0)">订单明细</div>
+                <div class="operation-log" :class="{ 'act'  : state === 1}" @click="detailFn(1)">操作日志</div>
+            </div>
+            <el-table
+                    :data="tableData"
+                    tooltip-effect="dark"
+                    :cell-style="cellFn"
+                    :header-cell-style="headerFn"
+                    height="204"
+                    border>
+                <template v-for="column in orderDetailColumns">
+                    <el-table-column
+                            :prop="column.prop"
+                            :label="column.label"
+                            :width="column.width"
+                            :filters="column.filters"
+                            :filter-method="column.func"
+                            filter-placement="bottom-end"
+                            :key="column.label">
+                    </el-table-column>
+                </template>
+            </el-table>
+        </footer>
     </div>
 </template>
 
@@ -63,6 +91,7 @@
         },
         data() {
             return {
+                state: 0,
                 columns: [{
                     prop: 'num',
                     label: '序号',
@@ -74,27 +103,27 @@
                 }, {
                     prop: 'area',
                     label: '处理状态',
-                    width: 100
+                    width: 82
                 }, {
                     prop: 'area',
                     label: '付款状态',
-                    width: 100
+                    width: 82
                 }, {
                     prop: 'area',
                     label: '收货人',
-                    width: 100
+                    width: 72
                 }, {
                     prop: 'area',
                     label: '买家留言',
-                    width: 100
+                    width: 82
                 }, {
                     prop: 'area',
                     label: '客户留言',
-                    width: 100
+                    width: 82
                 }, {
                     prop: 'area',
                     label: '快递公司',
-                    width: 100
+                    width: 82
                 }, {
                     prop: 'province',
                     label: '省',
@@ -107,22 +136,20 @@
                     func: this.cityTag
                 }, {
                     prop: 'area',
-                    label: '收货人'
+                    label: '详细地址'
                 }, {
                     prop: 'area',
-                    label: '收货人'
+                    label: '联系电话'
                 }, {
                     prop: 'area',
-                    label: '收货人'
+                    label: '订单编号'
                 }, {
                     prop: 'area',
-                    label: '收货人'
+                    label: '用户ID'
                 }, {
                     prop: 'area',
-                    label: '收货人'
-                }, {
-                    prop: 'area',
-                    label: '收货人',
+                    label: '外部平台名称',
+                    width: 120,
                     operation: {
                         label: '编辑',
                         func: this.disableTag
@@ -148,6 +175,47 @@
                     province: '江苏省',
                     city: '苏州市',
                     district: '昆山市'
+                }],
+                orderDetailColumns: [{
+                prop: 'num',
+                label: '序号',
+                width: 72
+                }, {
+                    prop: 'area',
+                    label: '商品编码',
+                    width: 160
+                }, {
+                    prop: 'area',
+                    label: '商品名称',
+                    width: 115
+                }, {
+                    prop: 'area',
+                    label: '规格',
+                    width: 84
+                }, {
+                    prop: 'area',
+                    label: '报价',
+                    width: 72
+                }, {
+                    prop: 'area',
+                    label: '打折金额',
+                    width: 82
+                }, {
+                    prop: 'area',
+                    label: '数量',
+                    width: 82
+                }, {
+                    prop: 'area',
+                    label: '成交金额',
+                    width: 82
+                }, {
+                    prop: 'area',
+                    label: '成交单价',
+                    width: 82
+                }, {
+                    prop: 'area',
+                    label: '商品编号',
+                    width: 112
                 }]
             }
         },
@@ -168,17 +236,21 @@
                 const property = column['property'];
                 return row[property] === value;
             },
-            headerFn(row, column, rowIndex, columnIndex) {
+            headerFn(row) {
                 if (row.columnIndex === 0) {
-                    return 'border: 1px solid #C1C0C9;background-color: #EBEBEB;height:20px'
+                    return 'border: 1px solid #C1C0C9;background-color: #EBEBEB;height:30px;padding: 0;margin: 0;font-size: 14px;color: #4A4A4A;text-align: center'
                 }
-                return 'background-color: #EBEBEB;border-top: 1px solid #C1C0C9;border-right: 1px solid #C1C0C9;border-bottom: 1px solid #C1C0C9;height:20px'
+                return 'background-color: #EBEBEB;border-top: 1px solid #C1C0C9;border-right: 1px solid #C1C0C9;border-bottom: 1px solid #C1C0C9;height:30px;padding: 0;margin: 0;font-size: 14px;color: #4A4A4A;text-align: center'
             },
             cellFn(row) {
                 if (row.columnIndex === 0) {
-                    return 'border-left: 1px solid #C1C0C9;border-right: 1px solid #C1C0C9;border-bottom: 1px solid #C1C0C9'
+                    return 'border-left: 1px solid #C1C0C9;border-right: 1px solid #C1C0C9;border-bottom: 1px solid #C1C0C9;height:30px;padding: 0;'
                 }
-                return 'border-right: 1px solid #C1C0C9;border-bottom: 1px solid #C1C0C9'
+                return 'border-right: 1px solid #C1C0C9;border-bottom: 1px solid #C1C0C9;height:30px;padding: 0;'
+            },
+            //
+            detailFn(val) {
+                this.state = val
             }
         },
         created() {
@@ -211,6 +283,28 @@
             font-size: 14px;
             color: $theme-color;
             border: 1px solid $theme-color;
+        }
+    }
+    footer{
+        .title{
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-top: 1px solid #ccc;
+            .order-detail, .operation-log{
+                color: $theme-color;
+                width: 100px;
+                height: 32px;
+                line-height: 32px;
+                font-size: 14px;
+                border: 1px solid $theme-color;
+                cursor:pointer;
+                margin-right: 20px;
+            }
+            .act{
+                background-color: $theme-color;
+                color: #fff;
+            }
         }
     }
 </style>

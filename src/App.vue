@@ -84,6 +84,9 @@ input{
     margin: 0 20px 0 10px;
   }
 }
+/*.el-table{*/
+  /*width: 100% !important;*/
+/*}*/
 /*.el-submenu__title i{*/
   /*color: #fff !important;*/
 /*}*/

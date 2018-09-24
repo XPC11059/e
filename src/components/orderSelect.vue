@@ -1,5 +1,5 @@
 <template>
-    <div class="">
+    <div class="" style="width: 100%">
         <div class="content">
             <div class="item">
                 <span>日期类型</span>
@@ -241,5 +241,6 @@
         color: #fff;
         border-radius: 140px;
         background-color: $theme-color;
+        cursor: pointer;
     }
 </style>
