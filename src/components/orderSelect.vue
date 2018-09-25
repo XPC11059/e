@@ -209,7 +209,7 @@
         align-items: center;
         justify-content: space-between;
         height: 30px;
-        padding: 0 10px 10px 0;
+        padding: 0 10px 10px 10px;
         .condition{
             display: flex;
             align-items: center;
