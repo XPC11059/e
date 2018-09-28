@@ -110,7 +110,7 @@
             <div class="condition">
                 <div class="item">
                     <div class="item-left">条件</div>
-                    <select name="" id="" class="select">
+                    <select name="" id="" class="item-right">
                         <option value="">平台订单编号</option>
                         <option value="">12323</option>
                         <option value="">123323223</option>
@@ -128,7 +128,7 @@
                         <option value="">并且</option>
                         <option value="">或者</option>
                     </select>
-                    <select name="" id="" class="select">
+                    <select name="" id="" class="item-right">
                         <option value="">平台订单编号</option>
                         <option value="">12323</option>
                         <option value="">123323223</option>
@@ -142,7 +142,9 @@
                     <input type="text" class="item-right">
                 </div>
             </div>
-            <div class="btn">查询</div>
+            <div class="btn-box">
+                <div class="btn">查询</div>
+            </div>
         </div>
     </div>
 </template>
@@ -179,28 +181,28 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: flex-start;
-    }
-    .item{
-        width: 220px;
-        height: 40px;
-        /*background-color: #fff;*/
-        display: flex;
-        align-items: flex-start;
-        justify-content: space-between;
-        margin-right: 10px;
-        color: #4A4A4A;
-        span{
-            width: 72px;
-            height: 30px;
-            line-height: 30px;
-            display: inline-block;
-            font-size: 14px;
-            text-align: right;
-        }
-        .select{
-            width: 140px;
-            height: 30px;
-            font-size: 12px;
+        .item{
+            width: calc(20% - 5px);
+            height: 40px;
+            /*background-color: #fff;*/
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-right: 5px;
+            color: #4A4A4A;
+            span{
+                width: calc(100% / 3 - 5px);
+                height: 30px;
+                line-height: 30px;
+                display: inline-block;
+                font-size: 14px;
+                text-align: center;
+            }
+            .select{
+                width: calc(100% / 3 * 2);
+                height: 30px;
+                font-size: 12px;
+            }
         }
     }
     .footer{
@@ -213,17 +215,23 @@
         .condition{
             display: flex;
             align-items: center;
+            width: 80%;
             .item{
+                width: calc(25% - 5px);
+                margin-right: 5px;
                 height: 30px;
+                display: flex;
+                align-items: center;
                 .item-left{
-                    width: 72px;
+                    width: calc(100% / 3 - 5px);
                     height: 30px;
                     line-height: 30px;
                     font-size: 14px;
                     text-align: right;
+                    margin-right: 5px;
                 }
                 .item-right{
-                    width: 140px;
+                    width: calc(100% / 3 * 2);
                     height: 30px;
                     font-size: 12px;
                 }
@@ -233,14 +241,27 @@
     select{
         font-size: 12px !important;
     }
-    .btn{
-        width: 140px;
-        height: 30px;
-        line-height: 30px;
-        font-size: 14px;
-        color: #fff;
-        border-radius: 140px;
-        background-color: $theme-color;
-        cursor: pointer;
+    .btn-box{
+        width: calc(20% - 5px);
+        .btn{
+            width: 140px;
+            height: 30px;
+            line-height: 30px;
+            font-size: 14px;
+            color: #fff;
+            border-radius: 140px;
+            background-color: $theme-color;
+            cursor: pointer;
+            float: right;
+        }
+    }
+
+
+    @media only screen and (max-width: 1200px) {
+        .content{
+            .item {
+                width: calc(25% - 5px);
+            }
+        }
     }
 </style>
