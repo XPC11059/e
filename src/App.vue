@@ -49,7 +49,7 @@ input{
 }
 .el-header{
   padding: 0 !important;
-    min-width: 820px;
+    min-width: 1020px;
 }
 .el-container{
   height: 100%;
@@ -73,7 +73,7 @@ input{
   height: 100%;
   padding: 0 !important;
   /*line-height: 160px;*/
-    min-width: 820px;
+    min-width: 1020px;
 }
 
 .el-submenu__title{
@@ -91,4 +91,10 @@ input{
   /*color: #fff !important;*/
 /*}*/
 
+.el-input__inner{
+  padding: 4px !important;
+  border: 1px solid rgb(169, 169, 169) !important;
+  border-radius: 0 !important;
+  height: 30px !important;
+}
 </style>

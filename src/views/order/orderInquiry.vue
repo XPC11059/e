@@ -1,7 +1,7 @@
 <!--订单查询-->
 <template>
     <div class="">
-        <orderSelect></orderSelect>
+        <orderSelect :comType="'enquiry'"></orderSelect>
         <!--按钮操作部分-->
         <!--<div class="btns">-->
             <!--<div class="btns-left">-->
