@@ -13,7 +13,7 @@
                         unique-opened
                         router>
 
-                    <el-menu-item index="/">
+                    <el-menu-item index="/home">
                         <img src="@/assets/index.png" />
                         <span slot="title">首页</span>
                     </el-menu-item>

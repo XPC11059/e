@@ -6,7 +6,7 @@
             <span>注销</span>
             <div class="logout">
                 <img src="@/assets/logout.png" alt="">
-                <span>退出</span>
+                <span @click="logOut">退出</span>
             </div>
         </div>
     </div>
@@ -21,7 +21,11 @@
         data() {
             return {}
         },
-        methods: {},
+        methods: {
+            logOut() {
+                this.$router.push('/')
+            }
+        },
         created() {
 
         },

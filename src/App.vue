@@ -5,9 +5,9 @@
       <!--&lt;!&ndash;<router-link to="/about">About</router-link>&ndash;&gt;-->
     <!--</div>-->
     <el-container>
-      <Aside></Aside>
+      <Aside v-show="$route.path !== '/'"></Aside>
       <el-container>
-        <el-header>
+        <el-header v-show="$route.path !== '/'">
           <Header></Header>
         </el-header>
         <el-main>

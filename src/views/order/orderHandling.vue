@@ -8,18 +8,82 @@
             <div class="nav-bar-btn" :class="{'act' : state === 3}" @click="tabFn(3)">截单</div>
         </div>
 
-        <orderSelect></orderSelect>
+        <orderSelect v-if="state !== 3"></orderSelect>
+        <div class="content" v-else>
+            <div class="item">
+                <span>日期类型</span>
+                <select name="" id="" v-model="dateType" class="select">
+                    <option value="全部">全部</option>
+                    <option value="下单时间">下单时间</option>
+                    <option value="付款时间">付款时间</option>
+                </select>
+            </div>
+            <div class="item">
+                <span>开始时间</span>
+                <el-date-picker
+                        class="select"
+                        size="mini"
+                        prefix-icon="none_icon"
+                        v-model="startTime"
+                        type="datetime"
+                        placeholder="选择日期时间">
+                </el-date-picker>
+            </div>
+            <div class="item">
+                <span>结束时间</span>
+                <el-date-picker
+                        class="select"
+                        size="mini"
+                        prefix-icon="none_icon"
+                        v-model="endTime"
+                        type="datetime"
+                        placeholder="选择日期时间">
+                </el-date-picker>
+            </div>
+            <div class="item">
+                <span>挂起状态</span>
+                <select name="" id="" class="select">
+                    <option value="全部">全部</option>
+                    <option value="已挂起">已挂起</option>
+                    <option value="未挂起">未挂起</option>
+                </select>
+            </div>
+        </div>
+        <div class="footer1" v-if="state === 3">
+            <div class="condition">
+                <div class="item">
+                    <div class="item-left">条件</div>
+                    <select name="" id="" class="item-right">
+                        <option value="平台订单编号">平台订单编号</option>
+                        <option value="订单编号">订单编号</option>
+                        <option value="买家ID">买家ID</option>
+                        <option value="收货人">收货人</option>
+                        <option value="收货人手机">收货人手机</option>
+                        <option value="快递单号">快递单号</option>
+                        <option value="条形码(商品编码)">条形码(商品编码)</option>
+                        <option value="商品名称">商品名称</option>
+                        <option value="客服备注">客服备注</option>
+                        <option value="买家留言">买家留言</option>
+                    </select>
+                </div>
+            </div>
+            <div class="btn-box">
+                <div class="btn">查询</div>
+            </div>
+        </div>
         <!--按钮操作部分-->
         <div class="btns">
             <div class="btns-left">
-                <div class="common-btn">挂起</div>
-                <div class="common-btn">解挂</div>
-                <div class="common-btn">删除</div>
+                <div class="common-btn" v-show="state !== 1">挂起</div>
+                <div class="common-btn" v-show="state !== 1">解挂</div>
+                <div class="common-btn" v-show="state !== 1">删除</div>
             </div>
             <div class="btns-right">
-                <div class="common-btn btn1">反确认</div>
-                <div class="common-btn btn2" @click="checkFn">确认审核</div>
-                <div class="common-btn btn3">导出</div>
+                <div class="common-btn btn1" v-show="state === 0 || state === 3">反确认</div>
+                <div class="common-btn btn1" v-show="state === 1 || state === 3">取消发货</div>
+                <div class="common-btn btn2" @click="checkFn" v-show="state === 0 || state === 3">确认审核</div>
+                <div class="common-btn btn2" @click="checkFn" v-show="state === 1">检验发货</div>
+                <div class="common-btn btn3" v-show="state === 0 || state === 1">导出</div>
             </div>
         </div>
         <!--表格-->
@@ -127,6 +191,10 @@
                 dialogVisible: false,
                 state: 0,
                 operaState: 0,
+
+                dateType: '',
+                startTime: '',
+                endTime: '',
                 columns: [{
                     prop: 'num',
                     label: '序号',
@@ -431,6 +499,93 @@
             .content{
                 height: 210px;
                 border-right: 1px solid #ccc;
+            }
+        }
+    }
+
+
+    .content{
+        background-color: rgba(249, 249, 249, 0.59);
+        padding: 10px 10px 0 10px;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: flex-start;
+        .item{
+            width: calc(20% - 5px);
+            height: 40px;
+            /*background-color: #fff;*/
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            margin-right: 5px;
+            color: #4A4A4A;
+            span{
+                width: calc(100% / 3 - 5px);
+                height: 30px;
+                line-height: 30px;
+                display: inline-block;
+                font-size: 14px;
+                text-align: center;
+            }
+            .select{
+                width: calc(100% / 3 * 2);
+                height: 30px;
+                font-size: 12px;
+            }
+        }
+    }
+
+    @media only screen and (max-width: 1220px) {
+        .content{
+            .item {
+                width: calc(25% - 5px);
+            }
+        }
+    }
+    .footer1{
+        background-color: rgba(249, 249, 249, 0.59);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 30px;
+        padding: 0 10px 10px 10px;
+        .condition{
+            display: flex;
+            align-items: center;
+            width: 80%;
+            .item{
+                width: calc(25% - 5px);
+                margin-right: 5px;
+                height: 30px;
+                display: flex;
+                align-items: center;
+                .item-left{
+                    width: calc(100% / 3 - 5px);
+                    height: 30px;
+                    line-height: 30px;
+                    font-size: 14px;
+                    text-align: right;
+                    margin-right: 5px;
+                }
+                .item-right{
+                    width: calc(100% / 3 * 2);
+                    height: 30px;
+                    font-size: 12px;
+                }
+            }
+        }
+        .btn-box{
+            width: calc(20% - 5px);
+            .btn{
+                width: 140px;
+                height: 30px;
+                line-height: 30px;
+                font-size: 14px;
+                color: #fff;
+                border-radius: 140px;
+                background-color: $theme-color;
+                cursor: pointer;
+                float: right;
             }
         }
     }

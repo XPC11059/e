@@ -1,6 +1,6 @@
 <!--快速退货入库-->
 <template>
-    <div class="">
+    <div class="" style="font-size: 14px">
         <div class="header">
             <span>快递单号</span>
             <input type="text">

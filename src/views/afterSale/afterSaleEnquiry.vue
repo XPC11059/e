@@ -1,6 +1,6 @@
 <!--售后单查询-->
 <template>
-    <div class="">
+    <div class="" style="font-size: 14px">
         <sel></sel>
         <div class="operation">
             <div class="operation-left">
