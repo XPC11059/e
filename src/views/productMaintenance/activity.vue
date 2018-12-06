@@ -22,6 +22,141 @@
                 <div class="btn">查询</div>
             </div>
         </div>
+        <div style="padding: 16px;box-sizing: border-box;">
+            <!--购物送-->
+            <div v-if="state === 1">
+                <div class="content">
+                    <div class="condition">
+                        <div class="condition-common">
+                            <div class="label" style="width: 30px">买</div>
+                            <input type="text" style="width: 22%">
+                            <div class="search-btn">搜索商品</div>
+                            <div class="label">满</div>
+                            <input type="text" style="width: 10%">
+                            <select name="" id="" v-model="type" class="select">
+                                <option value="jian">件</option>
+                                <option value="yuan">元</option>
+                            </select>
+                            <div class="label">送</div>
+                            <input type="text" style="width: 40%">
+                        </div>
+                        <div class="condition-common condition-1">
+                            <div class="label" style="width: 30px">或送</div>
+                            <input type="text" style="width: 22%">
+                            <div class="search-btn">搜索商品</div>
+                            <img src="@/assets/add.png" alt="">
+                            <input type="text" style="width: 22%">
+                            <div class="search-btn">搜索商品</div>
+                            <img src="@/assets/add.png" alt="">
+                            <input type="text" style="width: 22%">
+                            <div class="search-btn">搜索商品</div>
+                        </div>
+                    </div>
+                    <div class="subtract">
+                        <img src="@/assets/subtract.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <!--套餐活动-->
+            <div v-if="state === 2">
+                <div class="content">
+                    <div class="condition">
+                        <div class="condition-common">
+                            <div class="label" style="width: 50px">全场满</div>
+                            <input type="text" style="width: 10%">
+                            <select name="" id="" v-model="type" class="select">
+                                <option value="jian">件</option>
+                                <option value="yuan">元</option>
+                            </select>
+                            <div class="label">送</div>
+                            <input type="text" style="width: 40%">
+                        </div>
+                        <div class="condition-common condition-1">
+                            <div class="label" style="width: 50px">或送</div>
+                            <input type="text" style="width: 22%">
+                            <div class="search-btn">搜索商品</div>
+                            <img src="@/assets/add.png" alt="">
+                            <input type="text" style="width: 22%">
+                            <div class="search-btn">搜索商品</div>
+                        </div>
+                    </div>
+                    <div class="subtract">
+                        <img src="@/assets/subtract.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <!--全场满减活动-->
+            <div v-if="state === 3">
+                <div class="content">
+                    <div class="condition">
+                        <div class="condition-common">
+                            <div class="label" style="width: 30px">买</div>
+                            <input type="text" style="width: 22%">
+                            <div class="search-btn">搜索商品</div>
+                            <img src="@/assets/add.png" alt="">
+                            <input type="text" style="width: 22%">
+                            <div class="search-btn">搜索商品</div>
+                            <img src="@/assets/add.png" alt="">
+                            <div class="label">满</div>
+                            <input type="text" style="width: 10%">
+                            <select name="" id="" v-model="type" class="select">
+                                <option value="jian">件</option>
+                                <option value="yuan">元</option>
+                            </select>
+                        </div>
+                        <div class="condition-common condition-1">
+                            <div class="label" style="width: 30px">送</div>
+                            <input type="text" style="width: 22%">
+                            <div class="label" style="width: 33px">或送</div>
+                            <input type="text" style="width: 22%">
+                            <div class="search-btn">搜索商品</div>
+                            <img src="@/assets/add.png" alt="">
+                            <input type="text" style="width: 22%">
+                            <div class="search-btn">搜索商品</div>
+                        </div>
+                    </div>
+                    <div class="subtract">
+                        <img src="@/assets/subtract.png" alt="">
+                    </div>
+                </div>
+            </div>
+            <!--限名额活动-->
+            <div v-if="state === 4">
+                <div class="content">
+                    <div class="condition">
+                        <div class="condition-common">
+                            <div class="label" style="width: 30px"></div>
+                            <input type="text" style="width: 22%">
+                            <div class="search-btn">搜索商品</div>
+                            <div class="label">前</div>
+                            <input type="text" style="width: 10%">
+                            <select name="" id="" v-model="type" class="select">
+                                <option value="jian">件</option>
+                                <option value="yuan">名</option>
+                            </select>
+                            <div class="label">送</div>
+                            <input type="text" style="width: 40%">
+                        </div>
+                        <div class="condition-common condition-1">
+                            <div class="label" style="width: 30px">或送</div>
+                            <input type="text" style="width: 22%">
+                            <div class="search-btn">搜索商品</div>
+                            <img src="@/assets/add.png" alt="">
+                            <input type="text" style="width: 22%">
+                            <div class="search-btn">搜索商品</div>
+                        </div>
+                    </div>
+                    <div class="subtract">
+                        <img src="@/assets/subtract.png" alt="">
+                    </div>
+                </div>
+            </div>
+
+            <div class="add">
+                <img src="@/assets/add.png" alt="">
+                <div>增加活动</div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -34,7 +169,8 @@
         data() {
             return {
                 state: 1,
-                storeType: '京东'
+                storeType: '京东',
+                type: 'jian'
             }
         },
         methods: {
@@ -120,6 +256,72 @@
                 background-color: $theme-color;
                 border-radius: 30px;
             }
+        }
+    }
+
+    .content{
+        display: flex;
+        align-items: center;
+    }
+    .condition{
+        border: 1px solid $border-color;
+        input{
+            border: 1px solid $border-color;
+            height: 30px;
+        }
+        .search-btn{
+            width: 72px;
+            height: 30px;
+            background-color: $theme-color;
+            color: #fff;
+            cursor: pointer;
+            font-size: 12px;
+            line-height: 30px;
+        }
+        .label{
+            margin: 0 10px;
+            text-align: right;
+        }
+        font-size: 14px;
+        width: calc(100% - 68px);
+        background-color: #fff;
+        padding: 22px;
+        box-sizing: border-box;
+        .condition-common{
+            display: flex;
+            align-items: center;
+            select{
+                width: 70px;
+                height: 30px;
+                margin-left: 10px;
+            }
+            img{
+                margin: 0 10px;
+            }
+        }
+        .condition-1{
+            margin-top: 10px;
+        }
+    }
+    .subtract{
+        margin-left: 30px;
+        img{
+            width: 24px;
+            height: 24px;
+        }
+    }
+
+    .add{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: calc(100% - 68px);
+        height: 40px;
+        background-color: #fff;
+        margin-top: 20px;
+        border: 1px solid $border-color;
+        img{
+            margin-right: 14px;
         }
     }
 </style>

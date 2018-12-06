@@ -58,7 +58,8 @@ input{
 
 .el-aside {
   /*background-image: linear-gradient(0deg, #5C8CFF 0%, #54C3FF 98%);*/
-  background-color: #5C8CFF;
+  /*background-color: #5C8CFF;*/
+  background: url("~@/assets/aside-bg.jpg") center no-repeat;
   color: #333;
   text-align: center;
   height: 100%;
@@ -76,6 +77,9 @@ input{
     min-width: 1020px;
 }
 
+.el-submenu__title:hover{
+  background-color: #5C8CFF !important;
+}
 .el-submenu__title{
   display: flex;
   align-items: center;
@@ -97,4 +101,6 @@ input{
   border-radius: 0 !important;
   height: 30px !important;
 }
+
+
 </style>

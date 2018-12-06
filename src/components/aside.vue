@@ -7,7 +7,7 @@
                 <el-menu
                         default-active="2"
                         class="el-menu-vertical-demo"
-                        background-color="#5C8CFF"
+                        background-color="rgba(255,255,255,0)"
                         text-color="#fff"
                         active-text-color="#FAFF52"
                         unique-opened
@@ -22,6 +22,7 @@
                         <template slot="title">
                             <img src="@/assets/order.png" />
                             <span>订单</span>
+                            <i class="el-submenu__icon-arrow el-icon-arrow-down"></i>
                         </template>
                         <el-menu-item-group>
                             <el-menu-item index="/order/orderInquiry">
@@ -58,6 +59,7 @@
                         <template slot="title">
                             <img src="@/assets/product-maintenance.png" />
                             <span>产品维护</span>
+                            <i class="el-submenu__icon-arrow el-icon-arrow-down"></i>
                         </template>
                         <el-menu-item-group>
                             <el-menu-item index="/productMaintenance/productMaintenance">
@@ -80,6 +82,7 @@
                         <template slot="title">
                             <img src="@/assets/after-sale.png" />
                             <span>售后</span>
+                            <i class="el-submenu__icon-arrow el-icon-arrow-down"></i>
                         </template>
                         <el-menu-item-group>
                             <el-menu-item index="/afterSale/quickSalesReturn">
@@ -178,5 +181,19 @@
                 border-bottom: 1px solid #fff;
             }
         }
+    }
+    .el-submenu__icon-arrow {
+        z-index: 10000;
+    }
+    .el-icon-arrow-down:before {
+        content: "" !important;
+        z-index: 20000;
+        /*position: absolute;*/
+        border-width: 6px;
+        border-bottom: 0;
+        border-top: 8px;
+        border-style: solid dashed dashed;
+        border-color: #fff transparent transparent;
+        font-size: 0;
     }
 </style>
