@@ -187,7 +187,7 @@
     }
     .el-icon-arrow-down:before {
         content: "" !important;
-        z-index: 20000;
+        z-index: 2000;
         /*position: absolute;*/
         border-width: 6px;
         border-bottom: 0;

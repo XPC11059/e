@@ -102,5 +102,15 @@ input{
   height: 30px !important;
 }
 
+select{
+  width: 140px;
+  height: 30px;
+  font-size: 12px;
+}
+
+.el-submenu__icon-arrow[data-v-9b999550] {
+  z-index: 1000;
+}
+
 
 </style>

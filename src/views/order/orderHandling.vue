@@ -74,7 +74,7 @@
         <!--按钮操作部分-->
         <div class="btns">
             <div class="btns-left">
-                <div class="common-btn" v-show="state !== 1">挂起</div>
+                <div class="common-btn" v-show="state !== 1" @click="hangUpFn">挂起</div>
                 <div class="common-btn" v-show="state !== 1">解挂</div>
                 <div class="common-btn" v-show="state !== 1">删除</div>
             </div>
@@ -82,7 +82,7 @@
                 <div class="common-btn btn1" v-show="state === 0 || state === 3">反确认</div>
                 <div class="common-btn btn1" v-show="state === 1 || state === 3">取消发货</div>
                 <div class="common-btn btn2" @click="checkFn" v-show="state === 0 || state === 3">确认审核</div>
-                <div class="common-btn btn2" @click="checkFn" v-show="state === 1">检验发货</div>
+                <div class="common-btn btn2" v-show="state === 1" @click="checkendSFn">检验发货</div>
                 <div class="common-btn btn3" v-show="state === 0 || state === 1">导出</div>
             </div>
         </div>
@@ -163,15 +163,48 @@
             </div>
         </footer>
 
-
+        <!--订单挂起-->
         <el-dialog
-                title="提示"
+                title="订单挂起"
+                :visible.sync="hang_up"
+                width="30%">
+            <span style="margin-right: 20px">挂起类型:</span>
+            <select name="" id="" v-model="hangUp" style="width: 50%">
+                <option value="全部">全部</option>
+                <option value="快递未确定">快递未确定</option>
+                <option value="信息变更">信息变更</option>
+            </select>
+            <div style="margin-top: 20px;display: flex;align-items: flex-start;justify-content: center">
+                <span style="margin-right: 20px">备注：</span>
+                <textarea name="" id="" cols="30" rows="10" style="width: 50%;height: 80px">
+
+                </textarea>
+            </div>
+            <span slot="footer" class="dialog-footer">
+    <el-button @click="hang_up = false">取 消</el-button>
+    <el-button type="primary" @click="hang_up = false">确 定</el-button>
+  </span>
+        </el-dialog>
+        <!--确认审核-->
+        <el-dialog
+                title="确认审核提示"
                 :visible.sync="dialogVisible"
                 width="30%">
-            <span>确定审核吗？</span>
+            <span>请确认是否确认当前记录？</span>
             <span slot="footer" class="dialog-footer">
     <el-button @click="dialogVisible = false">取 消</el-button>
     <el-button type="primary" @click="dialogVisible = false">确 定</el-button>
+  </span>
+        </el-dialog>
+        <!--检验发货-->
+        <el-dialog
+                title="检验发货提示"
+                :visible.sync="check_send"
+                width="30%">
+            <span>是否确认检验发货？</span>
+            <span slot="footer" class="dialog-footer">
+    <el-button @click="check_send = false">取 消</el-button>
+    <el-button type="primary" @click="check_send = false">确 定</el-button>
   </span>
         </el-dialog>
     </div>
@@ -188,6 +221,9 @@
         },
         data() {
             return {
+                check_send: false,
+                hang_up: false,
+                hangUp: '全部',
                 dialogVisible: false,
                 state: 0,
                 operaState: 0,
@@ -351,6 +387,14 @@
             },
             checkFn() {
                 this.dialogVisible = true
+            },
+            // 订单挂起
+            hangUpFn() {
+                this.hang_up = true;
+            },
+            // 检验发货
+            checkendSFn() {
+                this.check_send = true;
             }
         },
         created() {

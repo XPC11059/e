@@ -30,7 +30,7 @@
                         <div class="condition-common">
                             <div class="label" style="width: 30px">买</div>
                             <input type="text" style="width: 22%">
-                            <div class="search-btn">搜索商品</div>
+                            <div class="search-btn" @click="goodChooseFn">搜索商品</div>
                             <div class="label">满</div>
                             <input type="text" style="width: 10%">
                             <select name="" id="" v-model="type" class="select">
@@ -43,13 +43,13 @@
                         <div class="condition-common condition-1">
                             <div class="label" style="width: 30px">或送</div>
                             <input type="text" style="width: 22%">
-                            <div class="search-btn">搜索商品</div>
+                            <div class="search-btn" @click="goodChooseFn">搜索商品</div>
                             <img src="@/assets/add.png" alt="">
                             <input type="text" style="width: 22%">
-                            <div class="search-btn">搜索商品</div>
+                            <div class="search-btn" @click="goodChooseFn">搜索商品</div>
                             <img src="@/assets/add.png" alt="">
                             <input type="text" style="width: 22%">
-                            <div class="search-btn">搜索商品</div>
+                            <div class="search-btn" @click="goodChooseFn">搜索商品</div>
                         </div>
                     </div>
                     <div class="subtract">
@@ -74,10 +74,10 @@
                         <div class="condition-common condition-1">
                             <div class="label" style="width: 50px">或送</div>
                             <input type="text" style="width: 22%">
-                            <div class="search-btn">搜索商品</div>
+                            <div class="search-btn" @click="goodChooseFn">搜索商品</div>
                             <img src="@/assets/add.png" alt="">
                             <input type="text" style="width: 22%">
-                            <div class="search-btn">搜索商品</div>
+                            <div class="search-btn" @click="goodChooseFn">搜索商品</div>
                         </div>
                     </div>
                     <div class="subtract">
@@ -92,10 +92,10 @@
                         <div class="condition-common">
                             <div class="label" style="width: 30px">买</div>
                             <input type="text" style="width: 22%">
-                            <div class="search-btn">搜索商品</div>
+                            <div class="search-btn" @click="goodChooseFn">搜索商品</div>
                             <img src="@/assets/add.png" alt="">
                             <input type="text" style="width: 22%">
-                            <div class="search-btn">搜索商品</div>
+                            <div class="search-btn" @click="goodChooseFn">搜索商品</div>
                             <img src="@/assets/add.png" alt="">
                             <div class="label">满</div>
                             <input type="text" style="width: 10%">
@@ -109,10 +109,10 @@
                             <input type="text" style="width: 22%">
                             <div class="label" style="width: 33px">或送</div>
                             <input type="text" style="width: 22%">
-                            <div class="search-btn">搜索商品</div>
+                            <div class="search-btn" @click="goodChooseFn">搜索商品</div>
                             <img src="@/assets/add.png" alt="">
                             <input type="text" style="width: 22%">
-                            <div class="search-btn">搜索商品</div>
+                            <div class="search-btn" @click="goodChooseFn">搜索商品</div>
                         </div>
                     </div>
                     <div class="subtract">
@@ -127,7 +127,7 @@
                         <div class="condition-common">
                             <div class="label" style="width: 30px"></div>
                             <input type="text" style="width: 22%">
-                            <div class="search-btn">搜索商品</div>
+                            <div class="search-btn" @click="goodChooseFn">搜索商品</div>
                             <div class="label">前</div>
                             <input type="text" style="width: 10%">
                             <select name="" id="" v-model="type" class="select">
@@ -140,10 +140,10 @@
                         <div class="condition-common condition-1">
                             <div class="label" style="width: 30px">或送</div>
                             <input type="text" style="width: 22%">
-                            <div class="search-btn">搜索商品</div>
+                            <div class="search-btn" @click="goodChooseFn">搜索商品</div>
                             <img src="@/assets/add.png" alt="">
                             <input type="text" style="width: 22%">
-                            <div class="search-btn">搜索商品</div>
+                            <div class="search-btn" @click="goodChooseFn">搜索商品</div>
                         </div>
                     </div>
                     <div class="subtract">
@@ -157,6 +157,33 @@
                 <div>增加活动</div>
             </div>
         </div>
+
+        <!--选择商品-->
+        <el-dialog
+                title="商品选择"
+                :visible.sync="goods_choose"
+                width="40%">
+            <div class="goods_search">
+                <input type="text">
+
+                <div class="search-btn" @click="goodChooseFn">搜索商品</div>
+            </div>
+
+            <div style="text-align: left;margin: 10px 0" v-for="item in goodList">
+                <el-radio v-model="goodId" :label="item.label">{{item.name}}</el-radio>
+            </div>
+
+            <el-pagination
+                    @size-change="handleSizeChange"
+                    layout="prev, pager, next"
+                    :total="1000">
+            </el-pagination>
+
+            <span slot="footer" class="dialog-footer">
+    <el-button @click="goods_choose = false">取 消</el-button>
+    <el-button type="primary" @click="goods_choose = false">确 定</el-button>
+  </span>
+        </el-dialog>
     </div>
 </template>
 
@@ -168,18 +195,37 @@
         components: {},
         data() {
             return {
+                goodId: 1,
+                goodList: [
+                    {label: 1, name: '商品1'},
+                    {label: 2, name: '商品2'},
+                    {label: 3, name: '商品3'},
+                    {label: 4, name: '商品4'},
+                    {label: 5, name: '商品5'},
+                    {label: 6, name: '商品6'},
+                    {label: 7, name: '商品7'},
+                    {label: 8, name: '商品8'},
+                ],
+                goods_choose: false,
                 state: 1,
                 storeType: '京东',
                 type: 'jian'
             }
         },
         methods: {
+            goodChooseFn() {
+                this.goods_choose = true;
+            },
             navClick(val) {
                 this.state = val
             },
             storeTypeFn(val) {
                 console.log(val);
                 this.storeType = val
+            },
+            // 页数改变
+            handleSizeChange() {
+
             }
         },
         created() {
@@ -322,6 +368,25 @@
         border: 1px solid $border-color;
         img{
             margin-right: 14px;
+        }
+    }
+    .goods_search{
+        overflow: hidden;
+        input{
+            width: calc(100% - 92px);
+            border: 1px solid $border-color;
+            height: 30px;
+            float: left;
+        }
+        .search-btn{
+            float: right;
+            width: 72px;
+            height: 30px;
+            background-color: $theme-color;
+            color: #fff;
+            cursor: pointer;
+            font-size: 12px;
+            line-height: 30px;
         }
     }
 </style>
